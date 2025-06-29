@@ -1,38 +1,27 @@
-# Influencer Discovery Tool
+# Food Delivery App
 
-This repository contains a basic prototype for searching YouTube channels. It consists of:
+This repository contains the frontend for a sample food delivery mobile app built with React Native (Expo). All data is hard coded in `data/data.json`.
 
-- **backend**: Node.js + Express server that queries the YouTube Data API.
-- **frontend**: Next.js React app that interacts with the backend.
-
-## Running Locally
-
-1. In `backend` copy `.env.example` to `.env` and set `YT_API_KEY`.
-2. Install dependencies and start the server:
+## Available Scripts
 
 ```bash
-cd backend
-npm install
-npm run dev
+npm install     # install dependencies
+npm start       # start Expo
+npm run android # run on Android emulator
+npm run ios     # run on iOS simulator
 ```
 
-The backend will run on `http://localhost:3001`.
+## Features
+- Home screen with category carousel and list of food items
+- Product screen with item details and add to cart
+- Cart screen for reviewing items
+- Checkout screen (dummy)
+- Profile screen
 
-3. In another terminal, start the frontend:
+The color scheme used throughout the app:
+- `#453447`
+- `#492B4B`
+- `#FFDB01`
+- `#1D1D1D`
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The frontend will be available on `http://localhost:3000`.
-
-## Tests
-
-Both the backend and frontend have placeholder test scripts so `npm test` will run without failing:
-
-```bash
-cd backend && npm test
-cd ../frontend && npm test
-```
+All icons rely on `react-native-vector-icons` (via Expo). Images and data are placeholders for demonstration purposes.

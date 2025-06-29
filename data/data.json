@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {"id": "c1", "name": "Burgers", "icon": "hamburger"},
+    {"id": "c2", "name": "Pizzas", "icon": "pizza"},
+    {"id": "c3", "name": "Drinks", "icon": "cup"},
+    {"id": "c4", "name": "Desserts", "icon": "ice-cream"}
+  ],
+  "foods": [
+    {"id": "f1", "category": "c1", "name": "Classic Burger", "description": "Beef patty with lettuce and cheese", "price": 8.99, "image": "https://via.placeholder.com/300"},
+    {"id": "f2", "category": "c1", "name": "Veggie Burger", "description": "Grilled veggies and sauce", "price": 7.49, "image": "https://via.placeholder.com/300"},
+    {"id": "f3", "category": "c2", "name": "Margherita Pizza", "description": "Tomato, mozzarella, basil", "price": 10.50, "image": "https://via.placeholder.com/300"},
+    {"id": "f4", "category": "c2", "name": "Pepperoni Pizza", "description": "Pepperoni and cheese", "price": 11.00, "image": "https://via.placeholder.com/300"},
+    {"id": "f5", "category": "c3", "name": "Cola", "description": "Chilled can of cola", "price": 1.99, "image": "https://via.placeholder.com/300"},
+    {"id": "f6", "category": "c4", "name": "Chocolate Cake", "description": "Rich chocolate layered cake", "price": 4.99, "image": "https://via.placeholder.com/300"}
+  ]
+}
