@@ -3,13 +3,18 @@ dotenv.config();
 
 import app from './app.js';
 import config from './src/config/index.js';
+import envCheck from './env-check.js';
+import logger from './src/utils/logger.js';
+import { Server } from 'http';
 
-let server;
+envCheck();
+
+let server: Server;
 
 const startServer = () => {
   // Create HTTP server
   server = app.listen(config.server.port, config.server.host, () => {
-    console.info(`
+    logger.info(`
 🚀 Server is running!
 📭 Email Service listening on http://${config.server.host}:${config.server.port}
 🌍 Environment: ${config.env}
@@ -46,13 +51,13 @@ const startServer = () => {
 
 // Graceful shutdown handler
 const gracefulShutdown = async (signal) => {
-  console.info(`\n🛑 Received ${signal} signal. Starting graceful shutdown...`);
+  logger.info(`\n🛑 Received ${signal} signal. Starting graceful shutdown...`);
 
   let forceExit = false;
 
   // Set a timeout for the graceful shutdown
   const shutdownTimeout = setTimeout(() => {
-    console.error('⚠️ Could not close connections in time, forcing shutdown');
+    logger.error('⚠️ Could not close connections in time, forcing shutdown');
     forceExit = true;
     process.kill(process.pid, signal);
   }, 10000);
@@ -73,10 +78,10 @@ const gracefulShutdown = async (signal) => {
 
     if (!forceExit) {
       clearTimeout(shutdownTimeout);
-      console.info('👋 Gracefully shut down. Goodbye!');
+      logger.info('👋 Gracefully shut down. Goodbye!');
     }
   } catch (error) {
-    console.error('❌ Error during shutdown:', error);
+    logger.error('❌ Error during shutdown:', error);
     if (!forceExit) {
       process.kill(process.pid, signal);
     }
@@ -89,12 +94,12 @@ process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 
 // Handle uncaught exceptions and unhandled rejections
 process.on('uncaughtException', (error) => {
-  console.error('❌ Uncaught Exception:', error);
+  logger.error('❌ Uncaught Exception:', error);
   gracefulShutdown('SIGTERM');
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+  logger.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
   gracefulShutdown('SIGTERM');
 });
 

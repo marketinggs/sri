@@ -1,4 +1,5 @@
 import { STATUS_CODES } from 'http';
+import logger from '../utils/logger.js';
 
 // Custom error class for API errors
 export class APIError extends Error {
@@ -26,7 +27,7 @@ export const errorHandler = (err, req, res, next) => {
   }
 
   // Log error details (consider using a proper logging library like winston)
-  console.error('Error details:', {
+  logger.error('Error details:', {
     name: err.name,
     message: err.message,
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,

@@ -3,29 +3,20 @@ import { createCampaign } from '../services/mailmodoService.js';
 import mailmodoApi from '../services/mailmodoService.js';
 import { campaignValidation } from '../middleware/validation.js';
 import { APIError } from '../middleware/errorHandler.js';
+import asyncHandler from '../utils/asyncHandler.js';
 
 const campaignRouter = Router();
 
-// Wrapper for async route handlers
-const asyncHandler = (fn) => (req, res, next) => {
-  Promise.resolve(fn(req, res, next)).catch(next);
-};
 
-campaignRouter.get('/', async (req, res) => {
-  try {
+campaignRouter.get(
+  '/',
+  asyncHandler(async (_req, res) => {
     res.json({
       status: 200,
       data: 'Campaigns are Up!',
     });
-  } catch (error) {
-    res.status(error.response?.status || 500).json({
-      success: false,
-      status: error.response?.status || 500,
-      message: error.response?.data?.message || 'Failed to fetch templates',
-      error: error.response?.data || error.message,
-    });
-  }
-});
+  })
+);
 
 /**
  * @route POST /campaigns
@@ -92,8 +83,9 @@ campaignRouter.delete(
 );
 
 // Trigger a campaign
-campaignRouter.post('/trigger/:campaignId', async (req, res) => {
-  try {
+campaignRouter.post(
+  '/trigger/:campaignId',
+  asyncHandler(async (req, res) => {
     const { campaignId } = req.params;
     const { email, subject, replyTo, fromName, campaign_data, data, addToList } = req.body;
 
@@ -121,14 +113,7 @@ campaignRouter.post('/trigger/:campaignId', async (req, res) => {
       message: 'Campaign triggered successfully',
       data: response.data,
     });
-  } catch (error) {
-    console.error('Campaign trigger error:', error.response?.data || error.message);
-
-    return res.status(400).json({
-      success: false,
-      message: error.response?.data?.message || 'Failed to trigger campaign',
-    });
-  }
-});
+  })
+);
 
 export default campaignRouter;

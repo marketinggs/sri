@@ -1,4 +1,5 @@
 export default {
+  preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   verbose: true,
   collectCoverage: true,
@@ -12,7 +13,7 @@ export default {
       statements: 80,
     },
   },
-  testMatch: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
+  testMatch: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
   testPathIgnorePatterns: ['/node_modules/'],
-  transform: {},
+  extensionsToTreatAsEsm: ['.ts'],
 };
