@@ -1,6 +1,6 @@
-const envCheck = () => {
-  let env = process.env;
-  let missingVars = [];
+const envCheck = (): void => {
+  const env = process.env;
+  const missingVars: string[] = [];
 
   ['MAILMODO_API_KEY'].forEach(function (varname) {
     if (!Object.prototype.hasOwnProperty.call(env, varname)) {

@@ -6,11 +6,13 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:node/recommended",
     "plugin:jest/recommended",
     "prettier"
   ],
-  "plugins": ["jest", "prettier"],
+  "plugins": ["jest", "prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module"
@@ -29,3 +31,4 @@
     "node/no-unpublished-import": "off"
   }
 }
+

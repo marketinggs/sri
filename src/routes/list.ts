@@ -1,11 +1,13 @@
 import { Router } from 'express';
 import { getAllContactLists, addToList } from '../services/mailmodoService.js';
+import asyncHandler from '../utils/asyncHandler.js';
 
 const router = Router();
 
 // Get all contact lists
-router.get('/', async (req, res) => {
-  try {
+router.get(
+  '/',
+  asyncHandler(async (_req, res) => {
     const data = await getAllContactLists();
 
     return res.status(200).json({
@@ -13,19 +15,13 @@ router.get('/', async (req, res) => {
       data,
       message: 'Contact lists retrieved successfully',
     });
-  } catch (error) {
-    console.error('Error fetching contact lists:', error.response?.data || error.message);
-    return res.status(error.response?.status || 500).json({
-      success: false,
-      message: error.response?.data?.message || 'Failed to fetch contact lists',
-      error: error.response?.data || error.message,
-    });
-  }
-});
+  })
+);
 
 // Add contact to list (creates list if it doesn't exist)
-router.post('/add', async (req, res) => {
-  try {
+router.post(
+  '/add',
+  asyncHandler(async (req, res) => {
     const {
       email,
       listName,
@@ -82,14 +78,7 @@ router.post('/add', async (req, res) => {
       data: result,
       message: 'Contact added to list successfully',
     });
-  } catch (error) {
-    console.error('Error adding contact to list:', error.response?.data || error.message);
-    return res.status(error.response?.status || 500).json({
-      success: false,
-      message: error.response?.data?.message || 'Failed to add contact to list',
-      error: error.response?.data || error.message,
-    });
-  }
-});
+  })
+);
 
 export default router;

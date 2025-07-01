@@ -11,6 +11,7 @@ import rateLimit from 'express-rate-limit';
 import config from './src/config/index.js';
 import rootRouter from './src/routes/rootRouter.js';
 import { errorHandler, notFoundHandler } from './src/middleware/errorHandler.js';
+import logger from './src/utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -58,7 +59,13 @@ app.use(cookieParser());
 
 // Compression and logging
 app.use(compression());
-app.use(morgan(config.isDevelopment ? 'dev' : 'combined'));
+app.use(
+  morgan(config.isDevelopment ? 'dev' : 'combined', {
+    stream: {
+      write: (message: string) => logger.info(message.trim()),
+    },
+  })
+);
 
 // View engine setup
 app.set('view engine', 'ejs');

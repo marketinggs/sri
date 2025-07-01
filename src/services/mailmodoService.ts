@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from '../config/index.js';
 import { APIError, ValidationError } from '../middleware/errorHandler.js';
+import logger from '../utils/logger.js';
 
 // Create axios instance with default config
 const mailmodoApi = axios.create({
@@ -17,7 +18,7 @@ const mailmodoApi = axios.create({
 mailmodoApi.interceptors.request.use(
   (config) => {
     if (process.env.NODE_ENV === 'development') {
-      console.info('API Request:', {
+      logger.info('API Request:', {
         method: config.method,
         url: config.url,
         data: config.data,
@@ -27,7 +28,7 @@ mailmodoApi.interceptors.request.use(
     return config;
   },
   (error) => {
-    console.error('Request error:', error);
+    logger.error('Request error:', error);
     return Promise.reject(error);
   }
 );
