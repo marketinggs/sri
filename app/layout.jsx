@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -24,13 +23,11 @@ const ibmPlexSans = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Hello World App",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
       <body className={`${ibmPlexSans.variable} min-h-screen`}>{children}</body>
