@@ -1,39 +1,30 @@
-# Email Service
+# Next.js Admin UI Base
 
-This microservice wraps Mailmodo APIs to send emails for other services. It exposes REST endpoints for campaigns, templates and contact lists.
+This project is a minimal Next.js app configured with Tailwind CSS and [shadcn/ui](https://ui.shadcn.com/) components. IBM Plex Sans is bundled locally using `@fontsource/ibm-plex-sans` and loaded with `next/font`.
 
-## Requirements
-- Node.js 18+
-- Mailmodo API key
+## Getting Started
 
-## Setup
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Copy `.env.example` to `.env` and provide your environment values.
-3. Build the TypeScript project:
-   ```bash
-   npm run build
-   ```
-4. Start the server:
-   ```bash
-   npm start
-   ```
-   Development mode with automatic reload:
-   ```bash
-   npm run dev
-   ```
+Install dependencies and run the development server:
 
-## Testing
-Run all Jest tests with:
 ```bash
-npm test
+npm install
+npm run dev
 ```
 
-## Docker
-A multi-stage `Dockerfile` is provided. Build and run the container:
+You can build the project using:
+
 ```bash
-docker build -t email-service .
-docker run -p 8008:8008 --env-file .env email-service
+npm run build
 ```
+
+## Project Structure
+
+- `app/` – Next.js app router pages and layout
+- `components/` – reusable UI components
+- `lib/` – shared utilities
+
+The default page displays a simple "Hello World" heading.
+
+## Notes
+
+This repository provides the base for an internal admin tool that will integrate with Mailmodo APIs in the future.
