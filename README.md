@@ -1,30 +1,90 @@
-# Next.js Admin UI Base
+# HackFlow - Full-Stack Dynamic Website
 
-This project is a minimal Next.js app configured with Tailwind CSS and [shadcn/ui](https://ui.shadcn.com/) components. IBM Plex Sans is bundled locally using `@fontsource/ibm-plex-sans` and loaded with `next/font`.
+HackFlow is a hackathon-ready full-stack project built with **Next.js + Tailwind CSS**. It includes:
 
-## Getting Started
+- Modern responsive UI (desktop + mobile)
+- User auth (signup/login/logout) using signed JWT-style cookies
+- Dynamic CRUD posts (create/edit/delete)
+- API routes with auth protection
+- Reusable components and global state using React Context
+- Seed script with demo users and posts
 
-Install dependencies and run the development server:
+## Tech Stack
+
+- **Frontend**: Next.js App Router, React, Tailwind CSS
+- **Backend**: Next.js Route Handlers (Node runtime)
+- **Data Layer**: JSON datastore (`data/db.json`) with seed script
+- **Auth**: Cookie-based signed tokens + secure password hashing (`crypto.scrypt`)
+
+> If you want to upgrade to MongoDB later, you can replace `lib/db.js` with a Mongo client/model layer while preserving API and UI contracts.
+
+## Setup
 
 ```bash
 npm install
+npm run seed
 npm run dev
 ```
 
-You can build the project using:
+Open: `http://localhost:3000`
+
+### Demo credentials after seeding
+
+- `aarav@example.com` / `password123`
+- `siya@example.com` / `password123`
+
+## Environment Variables
+
+Create `.env.local`:
 
 ```bash
-npm run build
+JWT_SECRET=replace_with_long_random_secret
 ```
 
-## Project Structure
+## Key Routes
 
-- `app/` – Next.js app router pages and layout
-- `components/` – reusable UI components
-- `lib/` – shared utilities
+- `/` - Landing page
+- `/signup` - Register
+- `/login` - Login
+- `/dashboard` - Authenticated posting workspace
 
-The default page displays a simple "Hello World" heading.
+## API Routes
 
-## Notes
+- `POST /api/auth/signup`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+- `GET /api/auth/me`
+- `GET /api/posts`
+- `POST /api/posts`
+- `PUT /api/posts/:id`
+- `DELETE /api/posts/:id`
 
-This repository provides the base for an internal admin tool that will integrate with Mailmodo APIs in the future.
+## Folder Structure
+
+```text
+app/
+  api/
+    auth/
+    posts/
+  dashboard/
+  login/
+  signup/
+components/
+  layout/
+  posts/
+  providers/
+lib/
+  auth.js
+  db.js
+  http.js
+data/
+  db.json
+scripts/
+  seed.mjs
+```
+
+## Notes for Maintainability
+
+- Clear modular files by concern (auth, data, transport, UI).
+- Inline comments added for important utility flows.
+- Reusable `PostForm`, `PostCard`, and `AuthProvider` components.

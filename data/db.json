@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "user_1773454654288_0d961736",
+      "name": "Aarav Demo",
+      "email": "aarav@example.com",
+      "passwordHash": "2f714b980f7dcc71a1b2235abedf23c8:8db7ab9ac639e4e4aa9ad09b5692653377db81ab74fa53462df81e27d59a31a3e85dabddb35b8426d94be70001074fdba63f745f2a4a72d4fdce68a4269ce8d1",
+      "createdAt": "2026-03-14T02:17:34.287Z"
+    },
+    {
+      "id": "user_1773454654288_04909f90",
+      "name": "Siya Demo",
+      "email": "siya@example.com",
+      "passwordHash": "754ddc065dcfbf7925ef44a755ff6a33:5c24ffac0a1907808a86b1e872347de6b2b6c4df443a58353a45cb171d1787c1c6e39c7f6c1e9ae40e62cfb493ade92e099fffbf182322203195cf0d8ab5bdfb",
+      "createdAt": "2026-03-14T02:17:34.287Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post_1773454654537_a7d21d5d",
+      "title": "Welcome to HackFlow",
+      "content": "This sample post was seeded automatically. Start building from here!",
+      "authorId": "user_1773454654288_0d961736",
+      "createdAt": "2026-03-14T02:17:34.287Z",
+      "updatedAt": "2026-03-14T02:17:34.287Z"
+    },
+    {
+      "id": "post_1773454654537_08419356",
+      "title": "Hackathon Tip",
+      "content": "Keep your modules small and reusable to move faster under pressure.",
+      "authorId": "user_1773454654288_04909f90",
+      "createdAt": "2026-03-14T02:17:34.287Z",
+      "updatedAt": "2026-03-14T02:17:34.287Z"
+    }
+  ]
+}
